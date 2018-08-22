@@ -72,28 +72,28 @@ while(ch):
      if(count==0):
          print("No Values Contained")            
   elif(ch==5):
-     x=0
-     y=0
-     while(x<n2):
-         while(y<n3):  
-             temp1.append(min(R1[x],R3[y]))
-             temp2.append(min(R1[x+1],R3[y+n3]))
-             temp3.append(max(min(R1[x],R3[y]),min(R1[x+1],R3[y+n3])))
-             #R4.append(temp3)
-             y+=1    
-         x+=1
-    # for i in range(n1*n3):
-     #    print(R4[i])
+     m=0
+     while(m<(n2*n2)):
+         n=0
+         while(n<n3):  
+             temp1=min(R1[m],R3[n])
+             temp2=min(R1[m+1],R3[n+n3])
+             temp3=max(temp1,temp2)
+             R4.append(temp3)
+             n+=1    
+         m+=n2  
+     for i in range(n1*n3):
+         print(R4[i])    
   elif(ch==6):
      m=0
-     n=0
-     while(m<n2):
+     while(m<(n2*n2)):
+         n=0
          while(n<n3):  
              temp1=R1[m]*R3[n]
              temp2=R1[m+1]*R3[n+n3]
              temp3=max(temp1,temp2)
              R5.append(temp3)
              n+=1    
-         m+=1  
+         m+=n2  
      for i in range(n1*n3):
          print(R5[i])    
