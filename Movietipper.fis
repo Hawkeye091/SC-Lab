@@ -1,0 +1,55 @@
+[System]
+Name='Movietipper'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=3
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Day'
+Range=[0 10]
+NumMFs=2
+MF1='Weekday':'gaussmf',[1.19 3.55]
+MF2='Weekend':'gaussmf',[1.19 6.41132275132275]
+
+[Input2]
+Name='Festival'
+Range=[0 10]
+NumMFs=2
+MF1='Yes':'trimf',[-0.09262 4.964 4.984]
+MF2='No':'trimf',[4.99 9.82 9.93]
+
+[Input3]
+Name='Rating'
+Range=[0 1]
+NumMFs=3
+MF1='Good':'gaussmf',[0.102480336801949 0.495]
+MF2='Poor':'gaussmf',[0.104 0.124402116402116]
+MF3='Excellent':'gaussmf',[0.104 0.877936507936508]
+
+[Input4]
+Name='Movie_Type'
+Range=[0 1]
+NumMFs=3
+MF1='Documentry':'trimf',[-0.4 0 0.4]
+MF2='Romance':'trimf',[0.100045502645503 0.499645502645503 0.899645502645503]
+MF3='Thriller/Action':'trimf',[0.6 1 1.4]
+
+[Output1]
+Name='Movie_Goer'
+Range=[0 30]
+NumMFs=3
+MF1='Poor':'trimf',[0 5 10]
+MF2='average':'trimf',[10 15 20]
+MF3='Good':'trimf',[20 25 30]
+
+[Rules]
+2 1 3 3, 3 (1) : 1
+2 1 3 2, 3 (1) : 1
+2 1 3 1, 3 (1) : 1
