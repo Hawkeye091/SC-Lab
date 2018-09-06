@@ -1,0 +1,54 @@
+[System]
+Name='Swimming Pool'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=1
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Climate'
+Range=[0 1]
+NumMFs=4
+MF1='Rainy':'gaussmf',[0.1416 0]
+MF2='Cool':'gaussmf',[0.1416 0.3333]
+MF3='Warm':'gaussmf',[0.1416 0.6667]
+MF4='Hot':'gaussmf',[0.1416 1]
+
+[Input2]
+Name='Day'
+Range=[0 1]
+NumMFs=2
+MF1='Weekday':'trimf',[0.00661375661375657 0.521 1.02]
+MF2='Weekend':'trimf',[0.504 1 1.4]
+
+[Input3]
+Name='Holiday'
+Range=[0 1]
+NumMFs=2
+MF1='No':'trimf',[-0.4 0 0.496031746031746]
+MF2='Yes':'trimf',[0.503968253968254 1 1.4]
+
+[Input4]
+Name='Rating'
+Range=[0 1]
+NumMFs=3
+MF1='Poor':'trimf',[-0.4 0 0.4]
+MF2='Average':'trimf',[0.1 0.5 0.9]
+MF3='Good':'trimf',[0.6 1 1.4]
+
+[Output1]
+Name='output1'
+Range=[0 1]
+NumMFs=3
+MF1='Sparsly_Populated':'trimf',[-0.4 0 0.4]
+MF2='Normallly_Populated':'trimf',[0.1 0.5 0.9]
+MF3='Highly_Populated':'trimf',[0.6 1 1.4]
+
+[Rules]
+1 1 1 1, 1 (1) : 1
