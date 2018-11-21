@@ -1,0 +1,85 @@
+[System]
+Name='Automotive_Speed_Controller1'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=35
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Speed'
+Range=[0 1]
+NumMFs=5
+MF1='Too_Slow':'gaussmf',[0.17 0.00264550264550262]
+MF2='Slow':'gaussmf',[0.17 0.251345502645503]
+MF3='Fast':'gaussmf',[0.17 0.751137566137566]
+MF4='Too_Fast':'gauss2mf',[0.17 0.9981 0.17 1]
+MF5='Optimum':'gaussmf',[0.167 0.499708994708995]
+
+[Input2]
+Name='Acceleration'
+Range=[-1 1]
+NumMFs=3
+MF1='Decelerating':'trimf',[-1.8 -1 -0.03968]
+MF2='Constant':'trimf',[-0.0185 0 0.0238]
+MF3='Accelerating':'trimf',[0.03968 0.9947 1.795]
+
+[Input3]
+Name='Distance_To_Destination'
+Range=[0 1]
+NumMFs=3
+MF1='Very_Close':'gaussmf',[0.1699 6.939e-18]
+MF2='Close':'gaussmf',[0.17 0.497354497354497]
+MF3='Distant':'gaussmf',[0.1699 1]
+
+[Output1]
+Name='Power'
+Range=[0 1]
+NumMFs=5
+MF1='Decreased_Power_Greatly':'trimf',[-0.4 0 0.4]
+MF2='Constant':'trimf',[0.1 0.5 0.9]
+MF3='Increased_Power_Greatly':'trimf',[0.6 1 1.4]
+MF4='Decreased_Power_Slightly':'trimf',[-0.146831746031746 0.252645502645503 0.649968253968254]
+MF5='Increased_Power_Slightly':'trimf',[0.3479 0.7497 1.147]
+
+[Rules]
+1 1 1, 4 (1) : 1
+1 2 1, 4 (1) : 1
+1 3 1, 1 (1) : 1
+1 1 2, 4 (1) : 1
+1 2 2, 4 (1) : 1
+1 3 2, 1 (1) : 1
+1 1 3, 3 (1) : 1
+1 2 3, 5 (1) : 1
+1 3 3, 5 (1) : 1
+2 1 1, 4 (1) : 1
+2 2 1, 4 (1) : 1
+2 3 1, 1 (1) : 1
+2 1 2, 4 (1) : 1
+2 2 2, 4 (1) : 1
+2 3 2, 1 (1) : 1
+2 1 3, 3 (1) : 1
+2 2 3, 5 (1) : 1
+2 3 3, 5 (1) : 1
+3 1 1, 1 (1) : 1
+3 2 1, 1 (1) : 1
+3 3 1, 1 (1) : 1
+3 1 2, 4 (1) : 1
+3 2 2, 4 (1) : 1
+3 3 2, 4 (1) : 1
+3 1 3, 3 (1) : 1
+3 2 3, 5 (1) : 1
+3 3 3, 5 (1) : 1
+4 1 1, 1 (1) : 1
+4 2 1, 1 (1) : 1
+4 3 1, 1 (1) : 1
+4 1 2, 4 (1) : 1
+4 2 2, 4 (1) : 1
+4 3 2, 1 (1) : 1
+4 1 3, 4 (1) : 1
+4 2 3, 4 (1) : 1

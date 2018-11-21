@@ -1,0 +1,58 @@
+[System]
+Name='Amount Of Detergent'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=16
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Dirtiness'
+Range=[0 10]
+NumMFs=4
+MF1='Almost_Clean':'trimf',[-1.498 1.482 4.511]
+MF2='Dirty':'trimf',[1.07 3.981 7.1]
+MF3='Soiled':'trimf',[2.999 6.009 9.009]
+MF4='Filthy':'trimf',[5.49291005291005 8.50291005291005 11.4529100529101]
+
+[Input2]
+Name='Weight'
+Range=[0 10]
+NumMFs=4
+MF1='Very_Light':'trimf',[-1.416 1.564 4.59]
+MF2='Heavy':'trimf',[2.95 5.955 8.985]
+MF3='Light':'trimf',[0.9649 3.964 7.024]
+MF4='Very_Heavy':'trimf',[5.489 8.519 11.49]
+
+[Output1]
+Name='Detergent'
+Range=[0 10]
+NumMFs=5
+MF1='Much':'trimf',[2 4.98 8.003]
+MF2='Vey_Much':'trimf',[3.981 6.984 9.984]
+MF3='Maximum':'trimf',[5.995 9.005 12]
+MF4='Little':'trimf',[-0.04056 2.99 5.992]
+MF5='Very_Little':'trimf',[-1.964 1.024 4.086]
+
+[Rules]
+1 1, 5 (1) : 1
+1 3, 5 (1) : 1
+1 2, 4 (1) : 1
+1 4, 4 (1) : 1
+2 1, 4 (1) : 1
+2 3, 4 (1) : 1
+2 2, 1 (1) : 1
+2 4, 1 (1) : 1
+3 1, 1 (1) : 1
+3 3, 1 (1) : 1
+3 2, 2 (1) : 1
+3 4, 2 (1) : 1
+4 1, 2 (1) : 1
+4 3, 2 (1) : 1
+4 2, 3 (1) : 1
+4 4, 3 (1) : 1
